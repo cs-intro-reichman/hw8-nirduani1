@@ -29,8 +29,13 @@ public class Network {
      *  If there is no such user, returns null.
      *  Notice that the method receives a String, and returns a User object. */
     public User getUser(String name) {
-        //// Replace the following statement with your code
-        return null;
+        User user = new User(null) ;
+        for (int i = 0; i < users.length; i++) {
+            if (users[i] != null && users[i].getName().equals(name)) {
+                user = users[i] ;
+            } 
+        }
+        return user;
     }
 
     /** Adds a new user with the given name to this network.
@@ -73,7 +78,12 @@ public class Network {
 
     // Returns a textual description of all the users in this network, and who they follow.
     public String toString() {
-       //// Replace the following statement with your code
-       return null;
+        String network = "Network:\n" ;
+        for (int i = 0; i < users.length; i++) {
+            if (users[i] != null ) {
+                network = network + users[i].toString() + "\n" ;
+            }
+        }
+        return network ;
     }
 }
