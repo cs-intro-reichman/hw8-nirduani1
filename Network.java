@@ -31,7 +31,7 @@ public class Network {
     public User getUser(String name) {
         char firstLetter = name.charAt(0) ;
         String fixedName = Character.toUpperCase(firstLetter) + name.substring(1) ;
-        for (int i = 0; i < users.length; i++) {
+        for (int i = 0; i < userCount; i++) {
             if (users[i] != null && users[i].getName().equals(fixedName)) {
                 return users[i] ;
             } 
@@ -79,10 +79,10 @@ public class Network {
 
     // Returns a textual description of all the users in this network, and who they follow.
     public String toString() {
-        String network = "Network:\n" ;
-        for (int i = 0; i < users.length; i++) {
+        String network = "Network:" ;
+        for (int i = 0; i < userCount; i++) {
             if (users[i] != null ) {
-                network = network + users[i].toString() + "\n" ;
+                network +=  "\n" + users[i].toString() ;
             }
         }
         return network ;
