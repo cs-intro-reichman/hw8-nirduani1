@@ -31,6 +31,7 @@ public class Network {
     public User getUser(String name) {
         char firstLetter = name.charAt(0) ;
         String fixedName = Character.toUpperCase(firstLetter) + name.substring(1) ;
+
         for (int i = 0; i < userCount; i++) {
             if (users[i] != null && users[i].getName().equals(fixedName)) {
                 return users[i] ;
@@ -52,6 +53,7 @@ public class Network {
             // first show in the array of null set to new User with the given name and returns true
             if (users[i] == null) {
                 users[i] = new User(name) ;
+                userCount++ ;
                 return true ;
             }
         }
