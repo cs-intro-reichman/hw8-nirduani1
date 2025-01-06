@@ -44,8 +44,19 @@ public class Network {
     *  If the given name is already a user in this network, does nothing and returns false;
     *  Otherwise, creates a new user with the given name, adds the user to this network, and returns true. */
     public boolean addUser(String name) {
-        
-        return false;
+        // if the given name is already a user does nothin and returns false
+        for (int i = 0; i < users.length; i++) {
+            if (users[i] != null && users[i].getName().equals(name)) {
+                return false ;
+            }
+            // first show in the array of null set to new User with the given name and returns true
+            if (users[i] == null) {
+                users[i] = new User(name) ;
+                return true ;
+            }
+        }
+        //if the network is full does nothing and returns false 
+        return false ;
     }
 
     /** Makes the user with name1 follow the user with name2. If successful, returns true.
@@ -81,9 +92,7 @@ public class Network {
     public String toString() {
         String network = "Network:" ;
         for (int i = 0; i < userCount; i++) {
-            if (users[i] != null ) {
-                network +=  "\n" + users[i].toString() ;
-            }
+            network +=  "\n" + users[i].toString() ;
         }
         return network ;
     }
