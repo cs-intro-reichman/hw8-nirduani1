@@ -63,7 +63,7 @@ public class UserTest {
         System.out.println("\n...Checking if Alex and Orly are friends...");
         System.out.println("Alex is a friend of Orly: " + alex.isFriendOf(orly));
         System.out.println("Orly is a friend of Alex: " + orly.isFriendOf(alex));
-        
+         
         // Making Alex and Orly friends
         System.out.println("\n...Adding Orly to the follows list of Alex, and Alex to the follows list of Orly...");
         alex.addFollowee("Orly");
