@@ -55,6 +55,9 @@
     /** Makes this user follow the given name. If successful, returns true. 
      *  If this user already follows the given name, or if the follows list is full, does nothing and returns false; */
     public boolean addFollowee(String name) {
+        if (name == null) {
+            return false ;
+        }
         // if this user alredy follows the given name return false
         if (this.follows(name)) {
             return false ;
