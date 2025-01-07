@@ -93,8 +93,13 @@ public class Network {
             if (user == users[i]) {
                 continue ;
             }
+            if (user.follows(users[i].getName())) {
+                continue ;
+            }
             int currentUserMutal = user.countMutual(users[i]) ;
+
             if (currentUserMutal > countMostMutal) {
+                countMostMutal = currentUserMutal ;
                 mostRecommendedUserToFollow = users[i] ;
             }
          
