@@ -29,6 +29,9 @@ public class Network {
      *  If there is no such user, returns null.
      *  Notice that the method receives a String, and returns a User object. */
     public User getUser(String name) {
+        if (name == null) {
+            return null ;
+        }
         char firstLetter = name.charAt(0) ;
         String fixedName = Character.toUpperCase(firstLetter) + name.substring(1) ;
 
@@ -80,25 +83,54 @@ public class Network {
     /** For the user with the given name, recommends another user to follow. The recommended user is
      *  the user that has the maximal mutual number of followees as the user with the given name. */
     public String recommendWhoToFollow(String name) {
-        String name2 ; 
+        User user = getUser(name) ;
+        if (user == null) {
+            return null ;
+        }
+        User mostRecommendedUserToFollow = null ;
+        int countMostMutal = 0 ;
+        for (int i = 0; i < userCount; i++) {
+            if (user == users[i]) {
+                continue ;
+            }
+            int currentUserMutal = user.countMutual(users[i]) ;
+            if (currentUserMutal > countMostMutal) {
+                mostRecommendedUserToFollow = users[i] ;
+            }
+         
+        } 
         
 
         
-        return null ;
+        return mostRecommendedUserToFollow.getName() ;
     }
 
     /** Computes and returns the name of the most popular user in this network: 
      *  The user who appears the most in the follow lists of all the users. */
     public String mostPopularUser() {
-        //// Replace the following statement with your code
-        return null;
+        String mostPopulaUser = null ;
+        for (int i = 0; i < userCount; i++) {
+            String currentname = users[i].getName() ;
+                if (followeeCount(currentname) > followeeCount(mostPopulaUser)) {
+                    mostPopulaUser = currentname ;
+                }
+            }
+        return mostPopulaUser;
     }
 
     /** Returns the number of times that the given name appears in the follows lists of all
      *  the users in this network. Note: A name can appear 0 or 1 times in each list. */
     private int followeeCount(String name) {
-        //// Replace the following statement with your code
-        return 0;
+        int count = 0 ;
+        for (int i = 0; i < userCount; i++) {
+            if (users[i] == getUser(name)) {
+                continue ;
+            }
+            if (users[i].follows(name)) {
+                count++ ;
+            }
+        }
+        return count ;
     }
 
     // Returns a textual description of all the users in this network, and who they follow.
